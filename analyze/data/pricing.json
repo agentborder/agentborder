@@ -1,0 +1,37 @@
+{
+  "$note": "호스팅 대역폭 단가 프리셋 — 비용은 항상 '추정'으로 표기하고 공식을 노출한다. 각 항목의 출처·수집일 명기. 릴리스 전 QA 게이트 #4에서 재확인.",
+  "version": "2026.08.15",
+  "retrievedAt": "2026-08-15",
+  "providers": {
+    "vercel-pro": {
+      "label": "Vercel Pro (Fast Data Transfer overage)",
+      "usdPerGb": 0.15,
+      "included": "1TB/월 포함 후 초과분",
+      "source": "https://vercel.com/pricing",
+      "basis": "공식 가격 페이지 명시: 'then starting at $0.15 per GB'"
+    },
+    "netlify-pro": {
+      "label": "Netlify Pro (credits 환산)",
+      "usdPerGb": 0.133,
+      "included": "플랜별 크레딧 포함분 소진 후",
+      "source": "https://www.netlify.com/pricing/",
+      "basis": "유도값: 대역폭 20 credits/GB × (Pro 추가 크레딧 $10/1,500 = $0.00667/credit) ≈ $0.133/GB — 공식 GB 단가 아님, 환산 공식 명시"
+    },
+    "cloudfront": {
+      "label": "AWS CloudFront (US, 첫 10TB 구간)",
+      "usdPerGb": 0.085,
+      "included": "프리 티어 제외 일반 구간",
+      "source": "https://aws.amazon.com/cloudfront/pricing/",
+      "basis": "표준 공표 단가",
+      "retrievedAt": "2026-08-15",
+      "note": "USD per GB, data transfer out, first 10TB tier, North America. Corroborated 2026-08-15 via egresscost.com tracker (page updated 2026-08). Canonical source: aws.amazon.com/cloudfront/pricing/"
+    },
+    "generic": {
+      "label": "일반 가정치 (중립 프리셋)",
+      "usdPerGb": 0.1,
+      "included": null,
+      "source": null,
+      "basis": "특정 벤더 아님 — 보수적 중간값 가정임을 리포트에 명시"
+    }
+  }
+}

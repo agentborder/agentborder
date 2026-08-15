@@ -1,0 +1,30 @@
+{
+  "$comment": "커머스 사이트 예시 정책. mode는 반드시 monitor로 시작할 것. 규칙 우선순위: bot > vendor > category > defaultEffect. 같은 계층 안에서는 위에서부터 첫 매칭이 적용되므로, 구체적 행위 규칙을 와일드카드(*)보다 먼저 쓸 것.",
+  "mode": "monitor",
+  "enforcePercent": 100,
+  "eventLog": "./agentborder-events.jsonl",
+
+  "actions": [
+    { "id": "product.read",  "label": "상품 조회",       "match": ["GET /products/*", "GET /api/v1/products/*"] },
+    { "id": "price.check",   "label": "가격·재고 조회",   "match": ["GET /api/v1/inventory/*"] },
+    { "id": "cart.write",    "label": "장바구니 담기",    "match": ["POST /api/v1/cart"] },
+    { "id": "checkout",      "label": "결제",            "match": ["POST /api/v1/checkout"] },
+    { "id": "review.write",  "label": "리뷰 작성",       "match": ["POST /api/v1/reviews"] }
+  ],
+
+  "rules": [
+    { "category": "ai-crawler",   "action": "*",             "effect": "block" },
+    { "category": "ai-search",    "action": "product.read",  "effect": "allow" },
+    { "category": "ai-search",    "action": "price.check",   "effect": "ratelimit", "limit": 60 },
+    { "category": "ai-search",    "action": ["cart.write", "checkout", "review.write"], "effect": "block" },
+    { "category": "ai-assistant", "action": ["checkout", "review.write"], "effect": "block" },
+    { "category": "ai-assistant", "action": "*",             "effect": "allow" },
+    { "category": "search-engine","action": "*",             "effect": "allow" },
+    { "category": "signed-agent", "action": ["cart.write", "checkout"], "effect": "allow" },
+    { "category": "signed-agent", "action": "review.write", "effect": "block" },
+    { "category": "signed-agent", "action": "*",             "effect": "allow" },
+    { "category": "unknown-bot",  "action": "*",             "effect": "ratelimit", "limit": 10 }
+  ],
+
+  "defaultEffect": "monitor"
+}

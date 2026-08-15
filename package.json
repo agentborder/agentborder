@@ -1,0 +1,66 @@
+{
+  "name": "agentborder",
+  "version": "0.3.0",
+  "description": "See what AI bots and agents do on your site, then control it by action. Log analyzer plus zero-dependency middleware (monitor-first, fail-open) with Web Bot Auth (RFC 9421) verification.",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node test.js && node analyze/test-parse.js && node analyze/test-classify.js && node analyze/test-aggregate.js && node analyze/test-html.js && node analyze/test-funnel.js",
+    "demo": "node example/server.js",
+    "simulate": "node example/simulate.js",
+    "report": "node report.js",
+    "analyze": "node analyze/cli.js"
+  },
+  "keywords": [
+    "bot",
+    "ai-crawler",
+    "gptbot",
+    "web-bot-auth",
+    "rate-limit",
+    "middleware",
+    "log-analyzer",
+    "robots-txt",
+    "ai-agent",
+    "agent",
+    "access-control",
+    "crawler",
+    "claudebot",
+    "bot-detection"
+  ],
+  "bin": {
+    "agentborder": "bin/agentborder.js"
+  },
+  "homepage": "https://agentborder.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agentborder/agentborder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agentborder/agentborder/issues"
+  },
+  "files": [
+    "index.js",
+    "verify.js",
+    "sign.js",
+    "telemetry.js",
+    "report.js",
+    "bin/",
+    "analyze/cli.js",
+    "analyze/parse.js",
+    "analyze/reader.js",
+    "analyze/classify.js",
+    "analyze/robots.js",
+    "analyze/aggregate.js",
+    "analyze/report-terminal.js",
+    "analyze/report-html.js",
+    "analyze/card.js",
+    "analyze/compare.js",
+    "analyze/data/",
+    "agentborder.config.example.json",
+    "NOTICE",
+    "TRADEMARKS.md"
+  ]
+}

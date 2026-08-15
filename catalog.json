@@ -1,0 +1,27 @@
+{
+  "version": "2026-08-04",
+  "note": "Tier-1 bot catalog. Categories follow industry-standard verified bot categories (AI Crawler / AI Search / AI Assistant / Search Engine). Sources: vendor official crawler docs + public bot references. The hosted (paid) catalog updates weekly and adds long-tail bots, key directories and published IP ranges.",
+  "bots": [
+    { "id": "gptbot",            "vendor": "openai",     "match": "GPTBot",            "category": "ai-crawler"   },
+    { "id": "oai-searchbot",     "vendor": "openai",     "match": "OAI-SearchBot",     "category": "ai-search"    },
+    { "id": "chatgpt-user",      "vendor": "openai",     "match": "ChatGPT-User",      "category": "ai-assistant" },
+    { "id": "claudebot",         "vendor": "anthropic",  "match": "ClaudeBot",         "category": "ai-crawler"   },
+    { "id": "claude-searchbot",  "vendor": "anthropic",  "match": "Claude-SearchBot",  "category": "ai-search"    },
+    { "id": "claude-user",       "vendor": "anthropic",  "match": "Claude-User",       "category": "ai-assistant" },
+    { "id": "perplexitybot",     "vendor": "perplexity", "match": "PerplexityBot",     "category": "ai-search"    },
+    { "id": "perplexity-user",   "vendor": "perplexity", "match": "Perplexity-User",   "category": "ai-assistant" },
+    { "id": "ccbot",             "vendor": "commoncrawl","match": "CCBot",             "category": "ai-crawler"   },
+    { "id": "bytespider",        "vendor": "bytedance",  "match": "Bytespider",        "category": "ai-crawler"   },
+    { "id": "amazonbot",         "vendor": "amazon",     "match": "Amazonbot",         "category": "ai-crawler"   },
+    { "id": "google-cloudvertex","vendor": "google",     "match": "Google-CloudVertexBot", "category": "ai-crawler" },
+    { "id": "google-extended",   "vendor": "google",     "match": "Google-Extended",   "category": "ai-crawler"   },
+    { "id": "meta-external",     "vendor": "meta",       "match": "Meta-External",     "category": "ai-crawler"   },
+    { "id": "duckassistbot",     "vendor": "duckduckgo", "match": "DuckAssistBot",     "category": "ai-assistant" },
+    { "id": "mistralai-user",    "vendor": "mistral",    "match": "MistralAI-User",    "category": "ai-assistant" },
+    { "id": "googlebot",         "vendor": "google",     "match": "Googlebot",         "category": "search-engine" },
+    { "id": "bingbot",           "vendor": "microsoft",  "match": "bingbot",           "category": "search-engine" },
+    { "id": "naver-yeti",        "vendor": "naver",      "match": "Yeti",              "category": "search-engine" },
+    { "id": "daum",              "vendor": "kakao",      "match": "Daum",              "category": "search-engine" }
+  ],
+  "botHints": ["bot", "crawler", "spider", "scrape", "fetch", "curl", "wget", "python-requests", "httpclient", "headless"]
+}

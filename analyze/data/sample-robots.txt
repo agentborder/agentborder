@@ -1,0 +1,10 @@
+# sample robots.txt (bundled with agentborder analyze --sample)
+User-agent: GPTBot
+Disallow: /private/
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: *
+Disallow: /admin/
+Sitemap: https://example.com/sitemap.xml
