@@ -119,7 +119,7 @@ app.use(createAgentborder({ ...config, verifier }));
 ## Try it locally in two minutes
 
 ```bash
-git clone <this repo> && cd agentborder
+git clone https://github.com/agentborder/agentborder.git && cd agentborder
 npm test                     # 96 tests
 node example/server.js       # demo shop with the gate (localhost:8787)
 node example/simulate.js     # fire 200 synthetic bot requests at it

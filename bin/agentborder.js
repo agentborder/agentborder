@@ -18,6 +18,6 @@ middleware (observe live traffic, 3 lines):
   const { createAgentborder } = require('agentborder');
   app.use(createAgentborder(require('./agentborder.config.json')));
 
-docs: https://github.com/agentborder  ·  Apache-2.0`);
+docs: https://agentborder.com  ·  Apache-2.0`);
   process.exit(sub ? 1 : 0);
 }
