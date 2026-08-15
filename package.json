@@ -1,6 +1,6 @@
 {
   "name": "agentborder",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "See what AI bots and agents do on your site, then control it by action. Log analyzer plus zero-dependency middleware (monitor-first, fail-open) with Web Bot Auth (RFC 9421) verification.",
   "main": "index.js",
   "license": "Apache-2.0",
