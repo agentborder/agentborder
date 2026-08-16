@@ -114,9 +114,16 @@ h2{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
 .step{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px}
 .step .n{color:var(--accent);font-weight:700;font-size:13px;margin-bottom:8px}
 .step pre{background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:12px;font:12.5px/1.6 ui-monospace,Menlo,monospace;color:#d6d5cc;margin-top:12px;overflow-x:auto}
-.srcrow{display:flex;flex-wrap:wrap;gap:12px 38px;align-items:baseline;margin:4px 0 12px}
+.srcrow{display:flex;flex-wrap:wrap;gap:12px 34px;align-items:baseline;margin:0 0 14px}
 .srcrow span{font-family:ui-monospace,Menlo,monospace;font-size:16px;font-weight:750;letter-spacing:.03em;color:var(--ink2)}
-.srcnote{font-size:12px;color:var(--muted);margin-bottom:22px}
+.srcnote{font-size:12.5px;line-height:1.6;color:var(--muted);margin:0;max-width:760px}
+.srcnote .inl{font-family:ui-monospace,Menlo,monospace;color:var(--accent);font-size:12px}
+.tgroup{margin-bottom:30px}
+.tlabel{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.verifyrow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.verifyrow a{display:inline-block;border:1px solid rgba(20,198,203,.5);background:rgba(20,198,203,.12);
+  color:var(--accent);border-radius:999px;padding:9px 18px;font-size:13.5px;font-weight:650;letter-spacing:.005em}
+.verifyrow a:hover{background:rgba(20,198,203,.22);border-color:var(--accent)}
 .honest{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:26px}
 .honest ul{list-style:none}
 .honest li{padding:9px 0;border-bottom:1px solid var(--border);color:var(--ink2);font-size:14.5px}
@@ -256,23 +263,38 @@ AGENTBORDER_ENFORCE_PERCENT=1</pre></div>
 
 <section>
   <div class="eyebrow">Why trust it</div>
-  <h2>Built to be checked</h2>
-  <p class="lead">The standards and data this tool is built on.</p>
-  <div class="srcrow">
-    <span>RFC 9309</span>
-    <span>RFC 9421</span>
-    <span>ED25519</span>
-    <span>READ THE DOCS</span>
-    <span>VENDOR BOT DOCS</span>
+  <h2 style="margin-bottom:30px">Built to be checked</h2>
+
+  <div class="tgroup">
+    <div class="tlabel">Check it yourself</div>
+    <div class="verifyrow">
+      <a href="https://www.npmjs.com/package/agentborder">npm provenance</a>
+      <a href="https://www.bestpractices.dev/en/projects/14099">OpenSSF Best Practices, passing</a>
+      <a href="https://scorecard.dev/viewer/?uri=github.com/agentborder/agentborder">OpenSSF Scorecard</a>
+      <a href="https://github.com/agentborder/agentborder/actions/workflows/ci.yml">CI on Linux, macOS, Windows</a>
+    </div>
+    <p class="srcnote">Run <code class="inl">npm audit signatures</code> to tie the published package to this repository and commit.</p>
   </div>
-  <p class="srcnote">Citations, not endorsements. Every catalog entry ships with its source URL and retrieval date, so you can check each one.</p>
+
+  <div class="tgroup">
+    <div class="tlabel">Built on</div>
+    <div class="srcrow">
+      <span>RFC 9309</span>
+      <span>RFC 9421</span>
+      <span>ED25519</span>
+      <span>READ THE DOCS</span>
+      <span>VENDOR BOT DOCS</span>
+    </div>
+    <p class="srcnote">Citations, not endorsements. Every catalog entry ships with its source and date.</p>
+  </div>
+
   <div class="honest">
     <ul>
-      <li><b>Offline by design.</b> The analyzer makes zero network calls. Your log never leaves your machine. You can verify this in the source, it is a few files of plain Node.</li>
-      <li><b>No claim without a basis.</b> robots.txt verdicts cite RFC 9309. Cost figures print their formula and source. A User-Agent is treated as a claim, never labeled verified without cryptographic proof.</li>
-      <li><b>Cryptographic identity is built in.</b> The middleware ships a working Web Bot Auth verifier (RFC 9421, Ed25519). Signed agents verify in about 0.13ms, spoofed signatures are flagged as spoofed.</li>
-      <li><b>Fail open, always.</b> Any error inside the gate lets the request through. Breaking your site is the one thing this tool is not allowed to do.</li>
-      <li><b>Apache-2.0.</b> The core is fully open. Paid services, when they arrive, are operations on top: a weekly bot catalog, a fleet console, audit reports. Flat per-domain pricing, no per-request metering.</li>
+      <li><b>Offline by design.</b> The analyzer makes zero network calls. Your log never leaves your machine.</li>
+      <li><b>No claim without proof.</b> A User-Agent is a claim, never labeled verified without a signature.</li>
+      <li><b>Cryptographic identity, built in.</b> A working Web Bot Auth verifier, RFC 9421 and Ed25519.</li>
+      <li><b>Fail open, always.</b> Any error inside the gate lets the request through.</li>
+      <li><b>Apache-2.0.</b> Paid services later are operations on top, flat per domain, never per request.</li>
     </ul>
   </div>
 </section>
