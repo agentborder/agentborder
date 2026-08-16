@@ -31,7 +31,7 @@ function globToRegex(glob) {
 
 function bucketOf(str, salt) {
   // 카나리 배정용 결정적 해시 버킷(0-99). 같은 클라이언트는 항상 같은 버킷.
-  const h = crypto.createHash('sha1').update(salt + '|' + str).digest();
+  const h = crypto.createHash('sha256').update(salt + '|' + str).digest();
   return h.readUInt16BE(0) % 100;
 }
 
