@@ -1,5 +1,9 @@
 # agentborder
 
+[![ci](https://github.com/agentborder/agentborder/actions/workflows/ci.yml/badge.svg)](https://github.com/agentborder/agentborder/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/agentborder/agentborder/badge)](https://scorecard.dev/viewer/?uri=github.com/agentborder/agentborder)
+[![npm](https://img.shields.io/npm/v/agentborder)](https://www.npmjs.com/package/agentborder)
+
 See what AI bots and agents do on your site. Then control it, by action.
 
 ```bash

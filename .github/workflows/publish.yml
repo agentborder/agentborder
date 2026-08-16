@@ -1,0 +1,32 @@
+name: publish
+
+# Publishing happens from CI, never from a laptop. npm records a provenance
+# attestation that ties the published tarball to this repository and this
+# workflow run, so anyone can verify where the package came from.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write        # required for OIDC trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - name: npm 11.5.1 or newer is required for trusted publishing
+        run: npm install -g npm@latest
+      - run: npm test
+      - run: npm publish
