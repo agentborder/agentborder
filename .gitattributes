@@ -1,0 +1,5 @@
+# Keep LF everywhere. The log parser splits on newlines, and a Windows
+# checkout that rewrote the sample log to CRLF would fail every test.
+* text=auto eol=lf
+*.png binary
+*.tgz binary
