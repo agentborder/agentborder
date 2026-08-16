@@ -1,6 +1,7 @@
 node_modules/
 *.tgz
 *.log
+!analyze/data/sample.log
 .DS_Store
 .env
 report.html
