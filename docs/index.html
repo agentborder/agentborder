@@ -87,14 +87,44 @@ h2{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
 .alert.show{visibility:visible;opacity:1}
 .stage-row{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
 @media(max-width:820px){.stage-row{grid-template-columns:1fr}}
-#stage{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:12px;height:380px;overflow:hidden}
+#stage{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:12px;height:430px;overflow:hidden}
 #stage.shake{animation:shake .35s}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
 .site{position:absolute;inset:26px;display:grid;grid-template-rows:34px 1fr;gap:10px}
 .site .bar{background:var(--surface2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;gap:8px;padding:0 12px}
 .site .bar i{width:8px;height:8px;border-radius:50%;background:var(--muted);opacity:.5}
 .site .cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.blk{background:var(--surface2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--muted);position:relative;transition:box-shadow .2s}
+.blk{background:var(--surface2);border:1px solid var(--border);border-radius:8px;position:relative;transition:box-shadow .2s;padding:10px 11px;overflow:hidden;text-align:left}
+.blk h4{font-size:10.5px;font-weight:650;color:#c9c7be;margin-bottom:7px;letter-spacing:.01em}
+.blk .crumb{font-size:7.5px;color:#5c5a54;margin-bottom:3px;letter-spacing:.04em}
+.blk .t{font-size:8.5px;line-height:1.55;color:#87857c}
+.blk .mut{color:#5f5d57}
+.blk .docwrap{display:flex;gap:8px}
+.blk .docnav{flex:none;width:44px;font-size:7.5px;line-height:2;color:#5f5d57;border-right:1px solid var(--border);padding-right:6px}
+.blk .docnav b{color:#9c9a90;font-weight:600;display:block}
+.blk .codestrip{margin-top:5px;background:#101010;border:1px solid var(--border);border-radius:4px;padding:3px 6px;font:7.5px/1.6 ui-monospace,Menlo,monospace;color:#7fb8ba}
+.blk .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.blk .pcard .pthumb{height:26px;border-radius:4px;margin-bottom:3px}
+.blk .pcard .pn{font-size:8px;color:#a09e94;white-space:nowrap;overflow:hidden}
+.blk .pcard .pp{font-size:8px;color:#6e6c64;font-variant-numeric:tabular-nums}
+.blk .tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;min-width:0}
+.blk .tier{border:1px solid var(--border);border-radius:5px;padding:4px 2px 5px;text-align:center;min-width:0;overflow:hidden}
+.blk .tier.hot{border-color:rgba(20,198,203,.45)}
+.blk .tier .tn{font-size:7.5px;color:#8a887f;letter-spacing:.03em}
+.blk .tier .tp{font-size:10px;font-weight:700;color:#c9c7be;margin:2px 0}
+.blk .tier .tf{font-size:6.5px;line-height:1.7;color:#5f5d57}
+.blk .tier .tb{margin-top:4px;height:11px;border-radius:3px;background:rgba(20,198,203,.16);border:1px solid rgba(20,198,203,.3)}
+.blk .ep{font:8.5px/1.8 ui-monospace,Menlo,monospace;color:#87857c;white-space:nowrap;overflow:hidden}
+.blk .ep i{font-style:normal;color:rgba(20,198,203,.6);display:inline-block;width:26px}
+.blk .ep i.po{color:rgba(217,89,38,.75)}
+.blk .post{margin-bottom:6px}
+.blk .post .pd{font-size:7px;color:#5c5a54;letter-spacing:.05em}
+.blk .post .pt{font-size:9px;color:#aca99f;line-height:1.35;margin:1px 0 2px}
+.blk .post .pe{font-size:7.5px;line-height:1.5;color:#5f5d57;overflow:hidden;max-height:22px}
+.blk .orow{display:flex;justify-content:space-between;font-size:8.5px;color:#87857c;line-height:1.9}
+.blk .orow.tot{border-top:1px solid var(--border);margin-top:2px;padding-top:3px;color:#c9c7be;font-weight:650}
+.blk .field{margin-top:5px;height:14px;border:1px solid var(--border);border-radius:4px;background:#151514;font-size:7px;color:#54524c;line-height:14px;padding:0 6px}
+.blk .payb{margin-top:5px;height:15px;border-radius:4px;background:rgba(20,198,203,.2);border:1px solid rgba(20,198,203,.4);font-size:7.5px;font-weight:650;color:#7fd4d6;text-align:center;line-height:15px}
 .blk.hit{box-shadow:inset 0 0 0 1px var(--accent)}
 .blk.deny{box-shadow:inset 0 0 0 1px var(--red)}
 .blk.err{background:rgba(230,103,103,.14);box-shadow:inset 0 0 0 1px var(--red)}
@@ -106,7 +136,7 @@ h2{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
 #overlay .row b{color:var(--ink);font-variant-numeric:tabular-nums}
 #overlay .cta-line{margin-top:10px;font-size:12.5px;color:var(--ink2);line-height:1.55}
 #overlay code{color:var(--accent);font-family:ui-monospace,Menlo,monospace}
-#feed{background:#0a0a0a;border:1px solid var(--border);border-radius:12px;height:380px;overflow:hidden;padding:16px 18px;font:12px/1.85 ui-monospace,Menlo,monospace}
+#feed{background:#0a0a0a;border:1px solid var(--border);border-radius:12px;height:430px;overflow:hidden;padding:16px 18px;font:12px/1.85 ui-monospace,Menlo,monospace}
 #feed div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .realcase{margin-top:16px;font-size:13px;color:var(--muted)}
 .realcase b{color:var(--ink2)}
@@ -178,12 +208,57 @@ footer{padding:44px 0 64px;border-top:1px solid var(--border);color:var(--muted)
       <div class="site">
         <div class="bar"><i></i><i></i><i></i><span style="font-size:11.5px;color:var(--muted)">your-site.com</span></div>
         <div class="cols">
-          <div class="blk" data-p="/docs">Docs</div>
-          <div class="blk" data-p="/products">Products</div>
-          <div class="blk" data-p="/pricing">Pricing</div>
-          <div class="blk" data-p="/api">API</div>
-          <div class="blk" data-p="/blog">Blog</div>
-          <div class="blk" data-p="/checkout">Checkout</div>
+          <div class="blk" data-p="/docs">
+            <h4>Documentation</h4>
+            <div class="docwrap">
+              <div class="docnav"><b>Quickstart</b>Install<br>Auth<br>Orders<br>Webhooks</div>
+              <div style="flex:1;min-width:0">
+                <div class="t" style="color:#aca99f">Install the SDK</div>
+                <div class="t mut">Add the client, set your key, and make the first call in about a minute.</div>
+                <div class="codestrip">npm install fernvale</div>
+              </div>
+            </div>
+          </div>
+          <div class="blk" data-p="/products">
+            <h4>Shop all</h4>
+            <div class="pgrid">
+              <div class="pcard"><div class="pthumb" style="background:#2a2d28"></div><div class="pn">Enamel Mug</div><div class="pp">$18</div></div>
+              <div class="pcard"><div class="pthumb" style="background:#33302a"></div><div class="pn">Trail Lantern</div><div class="pp">$29</div></div>
+              <div class="pcard"><div class="pthumb" style="background:#2b2e33"></div><div class="pn">Field Flask</div><div class="pp">$34</div></div>
+              <div class="pcard"><div class="pthumb" style="background:#322b2e"></div><div class="pn">Canvas Tote</div><div class="pp">$54</div></div>
+            </div>
+          </div>
+          <div class="blk" data-p="/pricing">
+            <h4>Pricing</h4>
+            <div class="tiers">
+              <div class="tier"><div class="tn">Starter</div><div class="tp">$0</div><div class="tf">1 store<br>Community</div></div>
+              <div class="tier hot"><div class="tn">Growth</div><div class="tp">$29</div><div class="tf">3 stores<br>Analytics</div><div class="tb"></div></div>
+              <div class="tier"><div class="tn">Scale</div><div class="tp">$99</div><div class="tf">Unlimited<br>SLA</div></div>
+            </div>
+            <div class="t mut" style="margin-top:5px;font-size:7px">Per month, billed yearly. Cancel anytime.</div>
+          </div>
+          <div class="blk" data-p="/api">
+            <h4>API reference</h4>
+            <div class="ep"><i>GET</i>/v1/products</div>
+            <div class="ep"><i>GET</i>/v1/products/:id</div>
+            <div class="ep"><i class="po">POST</i>/v1/orders</div>
+            <div class="ep"><i>GET</i>/v1/stock</div>
+            <div class="codestrip">{ "id": "prd_204", "price": 2900 }</div>
+          </div>
+          <div class="blk" data-p="/blog">
+            <h4>Journal</h4>
+            <div class="post"><div class="pd">AUG 12</div><div class="pt">Restock: the autumn field kits are back</div><div class="pe">Lanterns and flasks return this week, plus a look at what sold out and why.</div></div>
+            <div class="post"><div class="pd">JUL 30</div><div class="pt">How we source our canvas</div><div class="pe">A visit to the mill, and what a tighter weave means for wear.</div></div>
+          </div>
+          <div class="blk" data-p="/checkout">
+            <h4>Checkout</h4>
+            <div class="orow"><span>Canvas Tote</span><span>$54</span></div>
+            <div class="orow"><span>Enamel Mug</span><span>$18</span></div>
+            <div class="orow mut"><span>Shipping</span><span>$6</span></div>
+            <div class="orow tot"><span>Total</span><span>$78</span></div>
+            <div class="field">Card number</div>
+            <div class="payb">Pay $78</div>
+          </div>
         </div>
       </div>
       <div id="overlay">
