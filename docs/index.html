@@ -213,7 +213,7 @@ footer a:hover{color:var(--ink)}
    Renders ONLY data the endpoint actually returned. No fabricated numbers. */
 window.scan=(function(){
   // Deploy the worker (scanner/worker.js) and put its URL here. Empty = not wired yet.
-  var SCAN_API='';
+  var SCAN_API='https://agentborder-scan.sjkim2026.workers.dev';
   var $=function(id){return document.getElementById(id)};
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function band(n){return n>=67?['high','HIGH EXPOSURE']:n>=34?['med','MEDIUM EXPOSURE']:['low','LOW EXPOSURE']}
