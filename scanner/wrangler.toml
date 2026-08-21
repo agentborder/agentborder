@@ -1,0 +1,19 @@
+# agentborder public exposure scanner. Deploy with `wrangler deploy`.
+#
+# Before first deploy:
+#   1. wrangler d1 create agentborder_scans
+#      -> copy the printed database_id into database_id below
+#   2. wrangler d1 execute agentborder_scans --remote --file ./schema.sql
+#   3. wrangler secret put ADMIN_KEY        # paste a long random string
+#   4. wrangler deploy
+#
+# Then set SCAN_API in docs/index.html to the deployed worker URL.
+
+name = "agentborder-scan"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "agentborder_scans"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
