@@ -34,7 +34,10 @@ a{color:var(--ink);text-decoration:none}
 
 .top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
 .logo{font-weight:750;font-size:17px;letter-spacing:-.01em}
-.top .gh{font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:7px 14px}
+.topnav{display:flex;align-items:center;gap:18px}
+.topnav a.link{font-size:14px;color:var(--muted);text-decoration:none}
+.topnav a.link:hover{color:var(--ink)}
+.top .gh{font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:7px 14px;text-decoration:none}
 .top .gh:hover{color:var(--ink);border-color:var(--ink)}
 
 /* three heavy headlines, image-1 style but heavier */
@@ -72,6 +75,9 @@ a{color:var(--ink);text-decoration:none}
   border:1px solid var(--line);border-radius:7px;padding:7px 11px}
 .codemin .copy{background:none;border:0;color:var(--muted);font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .codemin .copy:hover{color:var(--ink)}
+.codeblock{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;overflow-x:auto;font:12.5px/1.65 ui-monospace,Menlo,Consolas,monospace;color:var(--ink2)}
+.codeblock code{font:inherit;color:inherit;background:none;border:0;padding:0;white-space:pre}
+.codeblock .cm{color:var(--muted)}
 
 /* collapsible minimal sections */
 .more{border-top:1px solid var(--line)}
@@ -138,7 +144,10 @@ footer a:hover{color:var(--ink)}
 
 <header class="top">
   <span class="logo">agentborder</span>
-  <a class="gh" href="https://github.com/agentborder/agentborder">GitHub</a>
+  <nav class="topnav">
+    <a class="link" href="https://agentborder.com/research">Research</a>
+    <a class="gh" href="https://github.com/agentborder/agentborder">GitHub</a>
+  </nav>
 </header>
 
 <!-- Headline 1: who we are -->
@@ -168,11 +177,23 @@ footer a:hover{color:var(--ink)}
 
 <!-- Headline 3: what the middleware does -->
 <section class="block" id="do">
-  <h2 class="hdo">Decide what they can do.</h2>
-  <p class="lead">Rules are who by what. Allow AI search on product pages, rate limit price checks, keep checkout human. It installs in monitor mode and blocks nothing until you say so, and any error inside the gate lets the request through.</p>
-  <div class="codemin">three lines, zero dependencies
-    <code>app.use(createAgentborder(config))</code>
-  </div>
+  <h2 class="hdo">Decide what they can do, the moment they act.</h2>
+  <p class="lead">Rules are who by what. Allow AI search on product pages, rate limit price checks, keep checkout human.</p>
+  <pre class="codeblock"><code>const { createAgentborder } = require('agentborder')
+
+const config = {
+  mode: 'monitor',                          <span class="cm">// observe only, block nothing</span>
+  actions: [
+    { id: 'checkout', match: ['POST /api/checkout'] }
+  ],
+  rules: [
+    { category: 'ai-crawler', action: 'checkout', effect: 'block' }
+  ]
+}
+
+app.use(createAgentborder(config))</code></pre>
+  <p class="micro">Nothing is hidden in <code>config</code>. It is the rules you wrote plus the mode, and nothing else. Monitor mode by default, so it blocks nothing until you say so. Any error inside the gate lets the request through, so it cannot break your site. Zero dependencies. <a href="https://github.com/agentborder/agentborder" style="text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--zap);color:var(--ink2)">Read the source, about 200 lines.</a></p>
+  <p class="micro">The one line is easy to write. The maintained, signature-verified agent database under it is not. That is what you install.</p>
 </section>
 
 <details class="more">
@@ -198,12 +219,13 @@ footer a:hover{color:var(--ink)}
   <summary>Research and reports</summary>
   <div class="more-body">
     <div>We are building aggregate, anonymized research on how exposed sites are to AI agents, drawn from public scans. Individual sites are never named. We publish a number only once enough real scans back it, with the method stated in the open.</div>
+    <div class="more-links"><a href="https://agentborder.com/research">Read the research</a></div>
   </div>
 </details>
 
 <footer>
   <span>agentborder · Apache-2.0 · the name is trademark protected, forks rename</span>
-  <span><a href="https://github.com/agentborder/agentborder">GitHub</a></span>
+  <span><a href="https://agentborder.com/research">Research</a> · <a href="https://github.com/agentborder/agentborder">GitHub</a></span>
 </footer>
 
 </div>
@@ -213,7 +235,7 @@ footer a:hover{color:var(--ink)}
    Renders ONLY data the endpoint actually returned. No fabricated numbers. */
 window.scan=(function(){
   // Deploy the worker (scanner/worker.js) and put its URL here. Empty = not wired yet.
-  var SCAN_API='https://agentborder-scan.sjkim2026.workers.dev';
+  var SCAN_API='';
   var $=function(id){return document.getElementById(id)};
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function band(n){return n>=67?['high','HIGH EXPOSURE']:n>=34?['med','MEDIUM EXPOSURE']:['low','LOW EXPOSURE']}
@@ -250,7 +272,7 @@ window.scan=(function(){
       '<div class="bridge"><h4>Want to see what is actually happening?</h4>'+
         '<p>agentborder middleware gives your application visibility into real agent traffic, then lets you decide by action.</p>'+
         '<div class="flow"><span>identity</span><span>traffic</span><span>action</span><span>policy</span><span>enforcement</span></div>'+
-        '<div class="cta"><a class="go" href="#do">See how it works</a><a class="alt" href="https://github.com/agentborder/agentborder">Install agentborder</a></div></div>'+
+        '<div class="cta"><a class="go" href="#do">See how it works</a><a class="alt" href="#scan">Try it on your access log</a></div></div>'+
       '<div class="again"><a href="#scan" onclick="scan.reset()">Scan another website &rarr;</a></div>';
     w.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
