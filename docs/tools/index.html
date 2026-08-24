@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Block AI crawlers, keep your visibility - agentborder</title>
+<meta name="description" content="Free generator: current copy-paste rules to block the AI crawlers that only cost you, while keeping the ones that send you traffic. Cloudflare, Vercel, nginx, Apache, robots.txt.">
+<style>
+:root{--bg:#fff;--ink:#0b0b0c;--ink2:#3c3c44;--muted:#8a8a92;--line:#e7e7e2;--surface:#f6f6f3;--zap:#c9f83a;--red:#e66767;--green:#3aa34a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--line);font-size:14px}
+header.top .logo{font-weight:750;font-size:16px;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+header.top a.nav{color:var(--muted);text-decoration:none;margin-left:16px}
+header.top a.nav:hover{color:var(--ink)}
+main{padding:40px 0 64px}
+h1{font-size:clamp(28px,4.4vw,40px);font-weight:850;letter-spacing:-.025em;line-height:1.06}
+h1 mark{background:var(--zap);color:var(--ink);padding:0 .08em}
+.lead{color:var(--ink2);margin-top:14px;max-width:640px;font-size:17px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:30px 0 14px}
+.tabs button{font:14px system-ui,sans-serif;font-weight:600;color:var(--ink2);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.outwrap{position:relative}
+pre{background:#0c0c0d;color:#eaeae4;border-radius:12px;padding:18px 18px;overflow-x:auto;font:13px/1.6 ui-monospace,Menlo,Consolas,monospace;white-space:pre;min-height:120px}
+.copy{position:absolute;top:12px;right:12px;background:var(--zap);color:#0b0b0c;border:0;border-radius:7px;padding:7px 13px;font:13px system-ui;font-weight:700;cursor:pointer}
+.copy:active{transform:translateY(1px)}
+.hint{color:var(--muted);font-size:13px;margin-top:10px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+@media(max-width:620px){.cols{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%}
+.card ul{list-style:none;display:grid;gap:6px}
+.card li{font-size:14px;color:var(--ink2);display:flex;justify-content:space-between;gap:10px}
+.card li span.v{color:var(--muted);font-size:12px}
+.why{margin-top:34px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;font-size:14.5px;color:var(--ink2)}
+.why b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:22px 0 60px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:var(--muted)}
+.cta{display:inline-block;margin-top:14px;font-size:14px;font-weight:650;border-bottom:2px solid var(--zap);text-decoration:none;color:var(--ink);padding-bottom:1px}
+</style></head><body>
+<div class="wrap">
+<header class="top">
+  <a class="logo" href="https://agentborder.com">agentborder</a>
+  <span><a class="nav" href="https://agentborder.com/research">Research</a><a class="nav" href="https://github.com/agentborder/agentborder">GitHub</a></span>
+</header>
+<main>
+  <h1>Block the AI crawlers that <mark>cost you</mark>. Keep the ones that bring traffic.</h1>
+  <p class="lead">AI training crawlers hammer your site and run up your bill while sending nothing back. Search and AI-answer crawlers are what keep you visible. Blocking all of them makes you invisible. This gives you the current rules to block only the costly ones. Pick your stack, copy, paste.</p>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="outwrap">
+    <button class="copy" onclick="copyOut()">copy</button>
+    <pre id="out"></pre>
+  </div>
+  <p class="hint" id="hint"></p>
+
+  <div class="cols">
+    <div class="card">
+      <h3><span class="dot" style="background:var(--red)"></span>Blocked (cost you, no traffic back)</h3>
+      <ul id="blockList"></ul>
+    </div>
+    <div class="card">
+      <h3><span class="dot" style="background:var(--green)"></span>Kept (keep you visible)</h3>
+      <ul id="keepList"></ul>
+    </div>
+  </div>
+
+  <div class="why">
+    <b>Why not just block everything?</b> Training crawlers (GPTBot, ClaudeBot, CCBot and friends) take your content to train models and send you no visitors. AI-answer and search crawlers (OAI-SearchBot, Perplexity, Googlebot) are how people find you through AI and search. Block all and your bill drops but so does your traffic. This list keeps that line drawn for you.
+    <br><br>
+    <b>One catch:</b> robots.txt is a polite request. Well-behaved crawlers obey it, bad ones ignore it. For crawlers that ignore robots.txt, use the Cloudflare, nginx, or Apache rule, which actually enforces at the server or edge. New crawlers appear constantly, so a hand-kept list rots. <a class="cta" href="https://agentborder.com">Get the always-current version</a>
+  </div>
+</main>
+<footer><span>agentborder · Apache-2.0 · list updated 2026-08</span><span><a href="https://agentborder.com">agentborder.com</a></span></footer>
+</div>
+
+<script>
+// Tier-1 block list: AI training crawlers that consume resources and return no traffic.
+// Kept out: AI-search, AI-assistant, search engines (they drive visibility).
+var BLOCK = [
+  {ua:"GPTBot", vendor:"OpenAI"},
+  {ua:"ClaudeBot", vendor:"Anthropic"},
+  {ua:"CCBot", vendor:"Common Crawl"},
+  {ua:"Bytespider", vendor:"ByteDance"},
+  {ua:"Amazonbot", vendor:"Amazon"},
+  {ua:"Google-CloudVertexBot", vendor:"Google"},
+  {ua:"Google-Extended", vendor:"Google"},
+  {ua:"Meta-External", vendor:"Meta"}
+];
+var KEEP = [
+  {ua:"OAI-SearchBot", vendor:"OpenAI", kind:"AI search"},
+  {ua:"Claude-SearchBot", vendor:"Anthropic", kind:"AI search"},
+  {ua:"PerplexityBot", vendor:"Perplexity", kind:"AI search"},
+  {ua:"ChatGPT-User", vendor:"OpenAI", kind:"AI assistant"},
+  {ua:"Claude-User", vendor:"Anthropic", kind:"AI assistant"},
+  {ua:"Googlebot", vendor:"Google", kind:"Search engine"},
+  {ua:"bingbot", vendor:"Microsoft", kind:"Search engine"}
+];
+var uas = BLOCK.map(function(b){return b.ua});
+var regex = "(" + uas.join("|") + ")";
+
+var GEN = {
+  "robots.txt": function(){
+    var s = "# agentborder: block AI training crawlers, keep search and AI answers\n";
+    s += BLOCK.map(function(b){return "User-agent: " + b.ua + "\nDisallow: /"}).join("\n\n");
+    return s;
+  },
+  "Cloudflare": function(){
+    // Paste into: WAF > Custom rules > Edit expression. Action: Block.
+    return "# Cloudflare > Security > WAF > Custom rules > Create rule\n# Field: Custom filter expression. Action: Block.\n\n" +
+      uas.map(function(u){return '(http.user_agent contains "' + u + '")'}).join("\n or ");
+  },
+  "Vercel": function(){
+    return "# Vercel > Project > Firewall > Custom Rules > New Rule\n" +
+      "# If:  Request Header  ->  User-Agent  ->  matches regex (case-insensitive)\n" +
+      "# Then: Deny\n\n" + "(?i)" + regex;
+  },
+  "nginx": function(){
+    return "# Add inside your server { } block, then reload nginx\n\n" +
+      'if ($http_user_agent ~* "' + regex + '") {\n    return 403;\n}';
+  },
+  "Apache": function(){
+    return "# .htaccess or vhost config (mod_rewrite required)\n\n" +
+      "RewriteEngine On\n" +
+      "RewriteCond %{HTTP_USER_AGENT} " + regex + " [NC]\n" +
+      "RewriteRule .* - [F,L]";
+  }
+};
+var HINTS = {
+  "robots.txt":"Advisory only. Polite crawlers obey, abusive ones ignore it. Pair with a server or edge rule below.",
+  "Cloudflare":"Enforced at the edge, before the request reaches your origin. Stops the bill and the load.",
+  "Vercel":"Enforced at Vercel's edge, before your function runs, so the invocation is not billed.",
+  "nginx":"Enforced at your server. Returns 403 before your app does any work.",
+  "Apache":"Enforced at your server. Returns 403 before your app does any work."
+};
+var order = ["robots.txt","Cloudflare","Vercel","nginx","Apache"];
+var current = "Cloudflare";
+
+function render(){
+  document.getElementById("out").textContent = GEN[current]();
+  document.getElementById("hint").textContent = HINTS[current];
+  var t = document.getElementById("tabs");
+  t.innerHTML = order.map(function(k){return '<button class="'+(k===current?"on":"")+'" onclick="pick(\''+k+'\')">'+k+'</button>'}).join("");
+}
+function pick(k){current=k;render()}
+function copyOut(){
+  navigator.clipboard.writeText(GEN[current]()).then(function(){
+    var b=document.querySelector(".copy");b.textContent="copied";setTimeout(function(){b.textContent="copy"},1200);
+  });
+}
+function lists(){
+  document.getElementById("blockList").innerHTML = BLOCK.map(function(b){return "<li><span>"+b.ua+"</span><span class='v'>"+b.vendor+"</span></li>"}).join("");
+  document.getElementById("keepList").innerHTML = KEEP.map(function(b){return "<li><span>"+b.ua+"</span><span class='v'>"+b.kind+"</span></li>"}).join("");
+}
+render();lists();
+</script>
+</body></html>
